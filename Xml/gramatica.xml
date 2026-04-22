@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE libros SYSTEM "gramatica.dtd">
+
+<libros>
+    <libro id="L02">
+        <titulo>El resplandor</titulo>
+        <autor>Stephen King</autor>
+        <anio>1977</anio>
+    </libro>
+
+    <libro id="L03">
+        <titulo>Don Quijote de la Mancha</titulo>
+        <autor>Miguel de Cervantes</autor>
+        <anio>1605</anio>
+    </libro>
+
+    <libro id="L01">
+        <titulo>Cien años de soledad</titulo>
+        <autor>Gabriel García Márquez</autor>
+        <anio>1967</anio>
+    </libro>
+    
+</libros>
