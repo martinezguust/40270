@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+}
+
+button {
+    width: 25%;
+    height: 50px;
+}
+
+button[id="b0"]{
+    width: 75%;
+}
+
+div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+input{
+    width: 98%;
+    height: 30px;
+}
+
+button [id="b="]{
+    width: 100%;
+}
+/*Botones con operadores*/
+.operadores{
+    background-color: bisque;
+}
+
+button[id="bce"], button[id="big"] {
+    width: 50%;
+}
