@@ -5,54 +5,58 @@ for (const key in botones) {
     if (!Object.hasOwn(botones, key)) continue;
 
     const boton = botones[key];
-    console.log(boton)
     boton.addEventListener("click", pinta)
-
 }
 
 function pinta(e) {
     resultado.value += e.target.innerText
 }
 
-let Ce = document.getElementById("bCe")
-let operadores = document.getElementsByClassName("operador")
+let operadores = document.getElementsByClassName("operadores")
 let prm, operacion
+
 for (const key in operadores) {
     if (!Object.hasOwn(operadores, key)) continue;
 
     const boton = operadores[key];
-    if (boton.innerText == "Ce") {
+    
+    if (boton.innerText == "CE") {
         boton.addEventListener("click", limpiar)
-    } else if (boton.innerText == "+") {
-        boton.addEventListener("click", sumar)
     } else if (boton.innerText == "="){
         boton.addEventListener("click", igual)
     } else {
-
-        boton.addEventListener("click", pintar2)
+        boton.addEventListener("click", prepararOperacion)
     }
-
-
-}
-
-function pintar2(e) {
-    console.log(e.target.innerText)
 }
 
 function limpiar() {
     resultado.value = ""
+    prm = ""
+    operacion = ""
 }
 
-function sumar(e) {
+function prepararOperacion(e) {
     prm = resultado.value
     operacion = e.target.innerText
     resultado.value = ""
-    e.target.style.backgroundColor = "red"
 }
 
-function igual(){
+function igual() {
     let prm2 = resultado.value
-    if (operacion == "+"){
-        resultado.value = parseInt(prm) + parseInt(prm2)
+    let res = 0
+    
+    let n1 = parseFloat(prm)
+    let n2 = parseFloat(prm2)
+
+    if (operacion == "+") {
+        res = n1 + n2
+    } else if (operacion == "-") {
+        res = n1 - n2
+    } else if (operacion == "x") {
+        res = n1 * n2
+    } else if (operacion == "/") {
+        res = n1 / n2
     }
+
+    resultado.value = res
 }
