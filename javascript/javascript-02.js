@@ -13,7 +13,8 @@ function pinta(e) {
 }
 
 let operadores = document.getElementsByClassName("operadores")
-let prm, operacion
+let pres = []
+let operacion
 
 for (const key in operadores) {
     if (!Object.hasOwn(operadores, key)) continue;
@@ -25,38 +26,63 @@ for (const key in operadores) {
     } else if (boton.innerText == "="){
         boton.addEventListener("click", igual)
     } else {
-        boton.addEventListener("click", prepararOperacion)
+        boton.addEventListener("click", obtener_parametros)
     }
 }
 
 function limpiar() {
     resultado.value = ""
-    prm = ""
+    pres = []
     operacion = ""
 }
 
-function prepararOperacion(e) {
-    prm = resultado.value
+function obtener_parametros(e) {
+    pres.push(resultado.value)
     operacion = e.target.innerText
     resultado.value = ""
 }
-
 function igual() {
-    let prm2 = resultado.value
-    let res = 0
-    
-    let n1 = parseFloat(prm)
-    let n2 = parseFloat(prm2)
+    pres.push(resultado.value)
+    let r = 0
+    let op = operacion
+    let bandera = false 
 
-    if (operacion == "+") {
-        res = n1 + n2
-    } else if (operacion == "-") {
-        res = n1 - n2
-    } else if (operacion == "x") {
-        res = n1 * n2
-    } else if (operacion == "/") {
-        res = n1 / n2
+    for (const key in pres) {
+        if (Object.prototype.hasOwnProperty.call(pres, key)) {
+            const prm = pres[key];
+
+            switch (op) {
+                case "+":
+                    r += parseFloat(prm)
+                    break
+                case "-":
+                    if (bandera == false) {
+                        r = parseFloat(prm)
+                        bandera = true
+                    } else {
+                        r -= parseFloat(prm)
+                    }
+                    break
+                case "x":
+                    if (bandera == false) {
+                        r = parseFloat(prm)
+                        bandera = true
+                    } else {
+                        r *= parseFloat(prm)
+                    }
+                    break
+                case "/":
+                    if (bandera == false) {
+                        r = parseFloat(prm)
+                        bandera = true
+                    } else {
+                        r /= parseFloat(prm)
+                    }
+                    break
+            }
+        }
     }
 
-    resultado.value = res
+    resultado.value = r
+    pres = []
 }
