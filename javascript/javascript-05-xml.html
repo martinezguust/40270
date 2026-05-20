@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Obtener datos XML</h1>
+    <button onclick="cargar()">Cargar datos</button>
+    <table id="tabla" border="1"></table>
+
+    <script>
+        function cargar(){
+            const xhttp = new XMLHttpRequest()
+            xhttp.onload = function(paams){
+                const xmlDoc = xhttp.responseXML
+                const cd = xmlDoc.getElementsByTagName("libro")
+                myFuncion(cd)
+            }
+            xhttp.open("GET","../Xml/gramatica.xml")
+            xhttp.send()
+        }
+        function myFuncion(cd) {
+            let table="<tr><th>autor</th><th>titulo</th><th>anio</th></tr>";
+            for (let i = 0; i < cd.length; i++) {
+                table += "<tr><td>" +
+                cd[i].getElementsByTagName("autor")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                cd[i].getElementsByTagName("titulo")[0].childNodes[0].nodeValue +
+                "</td><td>"+
+                cd[i].getElementsByTagName("anio")[0].childNodes[0].nodeValue +
+                "</td></tr>";
+            }
+        document.getElementById("tabla").innerHTML = table;
+
+        }
+    </script>
+</body>
+</html>
+
+<!--http protocolo textual
+
+
+utilizar llamdas asincronas para leer un archivo xml
+-->
